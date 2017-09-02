@@ -107,4 +107,6 @@ def get_article(aid):
 
 def del_article(del_lst):
     del_set = set(del_lst)
+    
+    global l
     l = [one for one in l if one['aid'] not in del_set]

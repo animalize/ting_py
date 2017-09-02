@@ -131,7 +131,7 @@ class Gui(ttk.Notebook):
         self.tree.delete(*self.tree.get_children())
         
         for d in lst:
-            s = (d['cate'], d['time'], d['chars'], d['title'])
+            s = (d['cate'], d['time'], d['cjk_chars'], d['title'])
             self.tree.insert("",'end',text="L1",values=s)
 
     def paste_title(self):
