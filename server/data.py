@@ -106,7 +106,20 @@ def get_article(aid):
 
 
 def del_article(del_lst):
-    del_set = set(del_lst)
+    # 删除文章
+    for aid in del_lst:
+        path = os.path.join(dir_path, aid)
+        try:
+            os.remove(path)
+        except:
+            pass
     
+    # 更新列表
+    del_set = set(del_lst)
     global l
     l = [one for one in l if one['aid'] not in del_set]
+    
+    # json文件
+    path = os.path.join(dir_path, JSON_FILE)
+    with open(path, 'w', encoding=ENCODING) as f:
+        json.dump(l, f, ensure_ascii=False)
