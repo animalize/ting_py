@@ -2,8 +2,7 @@ import json
 
 import requests
 
-host = 'http://192.168.21.60:17828'
-#host = 'http://127.0.0.1:17828'
+from vars import host
 
 def post_article(title, text, cate):
     url = host + '/post_article'

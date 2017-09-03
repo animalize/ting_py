@@ -8,11 +8,12 @@ from tkinter.scrolledtext import ScrolledText
 import pyperclip
 
 import message
-
+from call_tz2txt import getArticle
 
 class Gui(ttk.Notebook):
     def __init__(self, root):
         super().__init__(root)
+        self.master = root
 
         # adding Frames as pages for the ttk.Notebook
         # first page, which would get widgets gridded into it
@@ -22,6 +23,7 @@ class Gui(ttk.Notebook):
         page1.columnconfigure(1, weight=1)
         page1.columnconfigure(2, weight=1)
         page1.columnconfigure(3, weight=1)
+        page1.columnconfigure(4, weight=1)
 
         # 分类
         self.to_cate = StringVar()
@@ -43,7 +45,7 @@ class Gui(ttk.Notebook):
         bt = Button(page1,
                     text='提交',
                     command=self.submit)
-        bt.grid(row=0, column=3)
+        bt.grid(row=0, column=3, columnspan=2)
 
         # 粘贴标题
         bt = Button(page1,
@@ -65,15 +67,20 @@ class Gui(ttk.Notebook):
                     text='清空正文',
                     command=self.clear_text)
         bt.grid(row=1, column=3)
+        # tz2txt
+        bt = Button(page1,
+                    text='tz2txt',
+                    command=self.tz2txt)
+        bt.grid(row=1, column=4)
 
         # 标题
         self.title = StringVar()
         entry = Entry(page1, textvariable=self.title)
-        entry.grid(row=2, column=0, columnspan=4, sticky=W + E)
+        entry.grid(row=2, column=0, columnspan=5, sticky=W + E)
 
         # 正文
         self.text = ScrolledText(page1)
-        self.text.grid(row=3, column=0, columnspan=4, sticky=W + E + S + N)
+        self.text.grid(row=3, column=0, columnspan=5, sticky=W + E + S + N)
 
         # second page
         page2 = ttk.Frame(self)
@@ -162,6 +169,18 @@ class Gui(ttk.Notebook):
     def clear_text(self):
         self.text.delete("1.0", END)
 
+    def tz2txt(self):
+        url = self.master.clipboard_get().strip()
+        title, text = getArticle(url)
+        
+        if title == text == '':
+            print('fsfsd')
+            return
+        
+        self.title.set(title)
+        
+        self.text.delete("1.0", END)
+        self.text.insert(END, text)
 
 def main():
     root = Tk()
