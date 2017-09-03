@@ -56,7 +56,7 @@ def getArticle(url):
         title = m.group(1).strip()
         text = m.group(2).strip()
     else:
-            title = text = ''
+        title = text = ''
 
     remove(fpath)
 

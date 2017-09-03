@@ -174,7 +174,6 @@ class Gui(ttk.Notebook):
         title, text = getArticle(url)
         
         if title == text == '':
-            print('fsfsd')
             return
         
         self.title.set(title)
