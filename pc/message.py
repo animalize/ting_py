@@ -17,16 +17,17 @@ def post_article(title, text, cate):
     d = json.dumps(values, ensure_ascii=False)
 
     try:
-        r = requests.post(url, data=d.encode('gb18030'))
+        r = session.post(url, data=d.encode('gb18030'))
         return r.text == 'ok'
-    except:
+    except Exception as e:
+        print(e)
         return False
     
 
 def get_list():
     url = host + '/get_list'
     
-    r = requests.get(url)
+    r = session.get(url)
     r.encoding = 'gb18030'
     
     o = r.json()
@@ -38,7 +39,7 @@ def get_article(aid):
     url = host + '/get_article'
 
     d = {'aid': aid}
-    r = requests.get(url, params=d)
+    r = session.get(url, params=d)
     print(len(r.content))
     r.encoding = 'gb18030'
     
