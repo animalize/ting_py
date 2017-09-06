@@ -4,6 +4,9 @@ import requests
 
 from vars import host
 
+session = requests.Session()
+session.trust_env = False
+
 def post_article(title, text, cate):
     url = host + '/post_article'
 
@@ -36,6 +39,7 @@ def get_article(aid):
 
     d = {'aid': aid}
     r = requests.get(url, params=d)
+    print(len(r.content))
     r.encoding = 'gb18030'
     
     text = r.text

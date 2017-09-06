@@ -97,12 +97,12 @@ def get_article(aid):
     '从aid得到文章内容'
     try:
         path = os.path.join(dir_path, aid)
-        with open(path, encoding=ENCODING) as f:
-            text = f.read()
+        with open(path, 'rb') as f:
+            b = f.read()
     except:
         return None
     else:
-        return text
+        return b
 
 
 def del_article(del_lst):

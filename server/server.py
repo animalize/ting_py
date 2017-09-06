@@ -27,10 +27,10 @@ class GetArticleHandler(RequestHandler):
     def get(self):
         aid = self.get_argument('aid')
 
-        text = data.get_article(aid)
+        b = data.get_article(aid)
 
-        if text is not None:
-            self.write(text.encode('gb18030'))
+        if b is not None:
+            self.write(b)
 
 
 class DeleteArticleHandler(RequestHandler):

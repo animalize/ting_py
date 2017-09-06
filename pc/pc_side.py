@@ -50,7 +50,8 @@ class Gui(ttk.Notebook):
         # 粘贴标题
         bt = Button(page1,
                     text='粘贴标题',
-                    command=self.paste_title)
+                    command=self.paste_title,
+                    fg='#990000')
         bt.grid(row=1, column=0)
         # 清空标题
         bt = Button(page1,
@@ -60,7 +61,8 @@ class Gui(ttk.Notebook):
         # 粘贴正文
         bt = Button(page1,
                     text='粘贴正文',
-                    command=self.paste_text)
+                    command=self.paste_text,
+                    fg='#990000')
         bt.grid(row=1, column=2)
         # 清空正文
         bt = Button(page1,
@@ -176,8 +178,10 @@ class Gui(ttk.Notebook):
         if title == text == '':
             return
         
+        title = re.sub(r'[^\u0000-\uFFFF]', '', title)
         self.title.set(title)
         
+        text = re.sub(r'[^\u0000-\uFFFF]', '', text)
         self.text.delete("1.0", END)
         self.text.insert(END, text)
 
