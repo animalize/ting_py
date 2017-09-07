@@ -27,14 +27,14 @@ class Gui(ttk.Notebook):
 
         # 分类
         self.to_cate = StringVar()
-        self.to_cate.set('时效')
+        self.to_cate.set('zzzz_自用')
 
-        r = Radiobutton(page1, text='时效',
-                        variable=self.to_cate, value='时效')
+        r = Radiobutton(page1, text='自用',
+                        variable=self.to_cate, value='zzzz_自用')
         r.grid(row=0, column=0)
 
-        r = Radiobutton(page1, text='普通',
-                        variable=self.to_cate, value='普通')
+        r = Radiobutton(page1, text='共享',
+                        variable=self.to_cate, value='home_共享')
         r.grid(row=0, column=1)
 
         r = Radiobutton(page1, text='长篇',
