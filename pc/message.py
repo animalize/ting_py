@@ -33,7 +33,7 @@ def get_list():
     o = r.json()
     assert type(o) == list
     
-    return o
+    return o[::-1]
 
 def get_article(aid):
     url = host + '/get_article'
