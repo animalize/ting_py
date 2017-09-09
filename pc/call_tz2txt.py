@@ -29,6 +29,9 @@ def is_url(url):
 
 
 def getArticle(url):
+    if not os.path.isfile(tz2txt_path):
+        return '', ''
+    
     if not is_url(url):
         return '', ''
     
