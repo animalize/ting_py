@@ -2,13 +2,14 @@ import re
 
 from tkinter import *
 from tkinter import ttk
-#from tkinter.ttk import *
 from tkinter.scrolledtext import ScrolledText
 
 import pyperclip
 
 import message
+from cates import cate_list
 from call_tz2txt import getArticle
+
 
 class Gui(ttk.Notebook):
     def __init__(self, root):
@@ -18,7 +19,7 @@ class Gui(ttk.Notebook):
         # adding Frames as pages for the ttk.Notebook
         # first page, which would get widgets gridded into it
         page1 = ttk.Frame(self)
-        
+
         page1.columnconfigure(0, weight=1)
         page1.columnconfigure(1, weight=1)
         page1.columnconfigure(2, weight=1)
@@ -27,19 +28,26 @@ class Gui(ttk.Notebook):
 
         # 分类
         self.to_cate = StringVar()
-        self.to_cate.set('zzzz_自用')
+        self.to_cate.set(cate_list[0].code)
 
-        r = Radiobutton(page1, text='自用',
-                        variable=self.to_cate, value='zzzz_自用')
+        r = Radiobutton(page1, text=cate_list[0].name,
+                        variable=self.to_cate, value=cate_list[0].code)
         r.grid(row=0, column=0)
 
-        r = Radiobutton(page1, text='共享',
-                        variable=self.to_cate, value='home_共享')
-        r.grid(row=0, column=1)
+        if cate_list[1] is not None:
+            r = Radiobutton(page1, text=cate_list[1].name,
+                            variable=self.to_cate, value=cate_list[1].code)
+            r.grid(row=0, column=1)
 
-        r = Radiobutton(page1, text='长篇',
-                        variable=self.to_cate, value='长篇')
-        r.grid(row=0, column=2)
+        if cate_list[2] is not None:
+            r = Radiobutton(page1, text=cate_list[2].name,
+                            variable=self.to_cate, value=cate_list[2].code)
+            r.grid(row=0, column=2)
+
+        if cate_list[3] is not None:
+            r = Radiobutton(page1, text=cate_list[3].name,
+                            variable=self.to_cate, value=cate_list[3].code)
+            r.grid(row=0, column=3)
 
         # 提交
         bt = Button(page1,
@@ -91,7 +99,7 @@ class Gui(ttk.Notebook):
         page2.columnconfigure(2, weight=0)
         page2.rowconfigure(0, weight=0)
         page2.rowconfigure(1, weight=1)
-        
+
         # 刷新列表
         bt = Button(page2,
                     text='刷新列表',
@@ -99,16 +107,16 @@ class Gui(ttk.Notebook):
         bt.grid(row=0, column=1)
 
         self.tree = ttk.Treeview(page2, selectmode='browse')
-        
+
         vsb = ttk.Scrollbar(page2, orient="vertical", command=self.tree.yview)
         self.tree.configure(yscrollcommand=vsb.set)
-        
+
         self.tree["columns"] = ("1", "2", "3", "4")
         self.tree['show'] = 'headings'
-        self.tree.column("1", minwidth=50,width=100, stretch=NO)
-        self.tree.column("2", minwidth=80,width=150, stretch=NO)
-        self.tree.column("3", minwidth=50,width=100, stretch=NO)
-        self.tree.column("4", minwidth=50,width=600, stretch=NO)
+        self.tree.column("1", minwidth=50, width=100, stretch=NO)
+        self.tree.column("2", minwidth=80, width=150, stretch=NO)
+        self.tree.column("3", minwidth=50, width=100, stretch=NO)
+        self.tree.column("4", minwidth=50, width=600, stretch=NO)
         self.tree.heading("1", text="分类")
         self.tree.heading("2", text="时间")
         self.tree.heading("3", text="汉字数")
@@ -124,7 +132,7 @@ class Gui(ttk.Notebook):
         text = self.text.get("1.0", END).strip()
         if not text:
             return
-        
+
         title = self.title.get().strip()
         cate = self.to_cate.get()
 
@@ -132,16 +140,16 @@ class Gui(ttk.Notebook):
         if r:
             self.clear_title()
             self.clear_text()
-            
+
     def get_list(self):
         lst = message.get_list()
-        
+
         # 删旧的
         self.tree.delete(*self.tree.get_children())
-        
+
         for d in lst:
             s = (d['cate'], d['time'], d['cjk_chars'], d['title'])
-            self.tree.insert("",'end',text="L1",values=s)
+            self.tree.insert("", 'end', text="L1", values=s)
 
     def paste_title(self):
         try:
@@ -174,16 +182,17 @@ class Gui(ttk.Notebook):
     def tz2txt(self):
         url = self.master.clipboard_get().strip()
         title, text = getArticle(url)
-        
+
         if title == text == '':
             return
-        
+
         title = re.sub(r'[^\u0000-\uFFFF]', '', title)
         self.title.set(title)
-        
+
         text = re.sub(r'[^\u0000-\uFFFF]', '', text)
         self.text.delete("1.0", END)
         self.text.insert(END, text)
+
 
 def main():
     root = Tk()
