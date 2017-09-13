@@ -1,4 +1,5 @@
 import re
+import datetime
 
 from tkinter import *
 from tkinter import ttk
@@ -142,13 +143,17 @@ class Gui(ttk.Notebook):
             self.clear_text()
 
     def get_list(self):
+        def time_str(t):
+               return datetime.datetime.\
+                   fromtimestamp(t).strftime('%m-%d %H:%M')
+
         lst = message.get_list()
 
         # 删旧的
         self.tree.delete(*self.tree.get_children())
 
         for d in lst:
-            s = (d['cate'], d['time'], d['cjk_chars'], d['title'])
+            s = (d['cate'], time_str(d['time']), d['cjk_chars'], d['title'])
             self.tree.insert("", 'end', text="L1", values=s)
 
     def paste_title(self):
