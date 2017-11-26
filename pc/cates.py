@@ -5,7 +5,7 @@ __all__ = ('cate_list',)
 Cate = namedtuple('Cate', ['name', 'code'])
 
 cate_list = [
-    Cate(name='自用', code='zzzz_自用'),
+    Cate(name='自用', code='自用'),
     Cate(name='共享', code='共享'),
     None,
     None,
