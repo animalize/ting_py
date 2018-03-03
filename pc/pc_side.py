@@ -21,6 +21,7 @@ class Gui(ttk.Notebook):
         # first page, which would get widgets gridded into it
         page1 = ttk.Frame(self)
 
+        page1.rowconfigure(3, weight=1)
         page1.columnconfigure(0, weight=1)
         page1.columnconfigure(1, weight=1)
         page1.columnconfigure(2, weight=1)
