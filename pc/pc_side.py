@@ -11,6 +11,7 @@ import message
 from cates import cate_list
 from call_tz2txt import getArticle
 
+__all__ = ('main',)
 
 class Gui(ttk.Notebook):
     def __init__(self, root):
