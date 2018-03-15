@@ -1,11 +1,8 @@
 import sys
 from multiprocessing import Process
 
-sys.path.insert(0, './pc')
-sys.path.insert(0, './server')
-
-from server import web_server
-from pc import pc_side
+import web_server
+import pc_side
 
 PORT = 17828
     

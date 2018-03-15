@@ -9,7 +9,7 @@ class Cate:
         if code:
             self._code = code + '_' + name
         else:
-            self._code = code
+            self._code = name
     
     @property
     def name(self):
