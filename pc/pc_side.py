@@ -11,7 +11,7 @@ import message
 from cates import cate_list
 from call_tz2txt import getArticle
 
-__all__ = ('main',)
+__all__ = ('pc_main',)
 
 class Gui(ttk.Notebook):
     def __init__(self, root):
@@ -201,7 +201,11 @@ class Gui(ttk.Notebook):
         self.text.insert(END, text)
 
 
-def main():
+def pc_main(host=''):
+    if host:
+        import vars
+        vars.host = host
+    
     root = Tk()
     root.columnconfigure(0, weight=1)
     root.rowconfigure(0, weight=1)
@@ -213,4 +217,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    pc_main()

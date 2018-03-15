@@ -5,6 +5,7 @@ from tornado.web import RequestHandler
 
 import data
 
+__all__ = ('server_main',)
 
 class PostArticleHandler(RequestHandler):
     def post(self):
@@ -58,9 +59,12 @@ def make_app():
         (r'^.*$', Error404_Handler)
     ])
 
+def server_main(port=17828):
+    app = make_app()
+    app.listen(port)
+
+    print('正在启动服务器，监听端口:', port)
+    tornado.ioloop.IOLoop.current().start()
 
 if __name__ == "__main__":
-    app = make_app()
-    app.listen(17828)
-
-    tornado.ioloop.IOLoop.current().start()
+    server_main()

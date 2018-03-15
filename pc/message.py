@@ -2,13 +2,13 @@ import json
 
 import requests
 
-from vars import host
+import vars
 
 session = requests.Session()
 session.trust_env = False
 
 def post_article(title, text, cate):
-    url = host + '/post_article'
+    url = vars.host + '/post_article'
 
     values = {'title': title,
               'text': text,
@@ -25,7 +25,7 @@ def post_article(title, text, cate):
     
 
 def get_list():
-    url = host + '/get_list'
+    url = vars.host + '/get_list'
     
     r = session.get(url)
     r.encoding = 'gb18030'
@@ -36,7 +36,7 @@ def get_list():
     return o[::-1]
 
 def get_article(aid):
-    url = host + '/get_article'
+    url = vars.host + '/get_article'
 
     d = {'aid': aid}
     r = session.get(url, params=d)
