@@ -207,6 +207,7 @@ def pc_main(host=''):
         vars.host = host
     
     root = Tk()
+    root.geometry("780x600")
     root.columnconfigure(0, weight=1)
     root.rowconfigure(0, weight=1)
     root.title('ting PC端')
