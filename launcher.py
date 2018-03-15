@@ -1,5 +1,5 @@
-from multiprocessing import Process
 import sys
+from multiprocessing import Process
 
 sys.path.insert(0, './pc')
 sys.path.insert(0, './server')

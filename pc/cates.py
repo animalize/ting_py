@@ -20,8 +20,8 @@ class Cate:
         return self._code
 
 cate_list = [
-    Cate(name='自用', code='自用'),
-    Cate(name='共享', code='共享'),
+    Cate(name='自用', code=''),
+    Cate(name='共享', code=''),
     None,
     None,
 ]
