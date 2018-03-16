@@ -9,7 +9,7 @@ __all__ = ('check_ver',)
 session = requests.Session()
 session.trust_env = False
 
-url = 'https://raw.githubuserc1ontent.com/animalize/ting_py/master/launcher.py'
+url = 'https://raw.githubusercontent.com/animalize/ting_py/master/launcher.py'
 
 def check_ver(current, full=True):
     try:
@@ -37,10 +37,10 @@ def check_ver(current, full=True):
         b = '当前版本%d，发现新版本%d\n' % (current, ver)
         
         if full:
-            a = 'Ting桌面端集成版 检查更新\n'
+            a = '\nTing桌面端集成版 检查更新\n'
             c = '到这里下载新版：https://github.com/animalize/ting_py/releases\n'
         else:
-            a = 'Ting桌面端 检查更新\n'
+            a = '\nTing桌面端 检查更新\n'
             c = '到这里下载新版：https://github.com/animalize/ting_py\n'
             
         s = a + b + c

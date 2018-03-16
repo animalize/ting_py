@@ -220,6 +220,8 @@ def pc_main(host='', current=1, full=False):
     if host:
         from . import vars
         vars.host = host
+        
+    global current_ver, from_full
     current_ver = current
     from_full = full
     
