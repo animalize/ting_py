@@ -156,7 +156,7 @@ class Gui(ttk.Notebook):
 
         r = message.post_article(title, text, cate)
         if r:
-            self.clear_title()
+            self.title.set('')
             self.clear_text()
 
     def get_list(self):
