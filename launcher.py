@@ -11,6 +11,7 @@ PORT = 17828
 FULL_VERSION = 2
 
 # ting_py版本
+# 改变这里后，也要改变pc_side.py里的current_ver
 TING_VERSION = 2
 
 def main():
