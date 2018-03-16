@@ -13,8 +13,8 @@ FULL_VERSION = 1
 TING_VERSION = 1
     
 def main():
-    p = Process(target=web_server.server_main, 
-                args=(PORT,),
+    p = Process(target = web_server.server_main, 
+                args = (PORT, FULL_VERSION, True),
                 daemon=True)
     p.start()
     
