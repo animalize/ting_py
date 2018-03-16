@@ -1,8 +1,8 @@
 import sys
 from multiprocessing import Process
 
-import web_server
-import pc_side
+from server import web_server
+from pc import pc_side
 
 PORT = 17828
     

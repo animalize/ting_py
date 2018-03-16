@@ -2,7 +2,7 @@ import json
 
 import requests
 
-import vars
+from . import vars
 
 session = requests.Session()
 session.trust_env = False

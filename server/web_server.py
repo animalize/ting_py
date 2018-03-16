@@ -3,7 +3,7 @@ import json
 import tornado.ioloop
 from tornado.web import RequestHandler
 
-import data
+from . import data
 
 __all__ = ('server_main',)
 

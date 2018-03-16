@@ -7,9 +7,9 @@ from tkinter.scrolledtext import ScrolledText
 
 import pyperclip
 
-import message
-from cates import cate_list
-from call_tz2txt import getArticle
+from . import  message
+from .cates import cate_list
+from .call_tz2txt import getArticle
 
 __all__ = ('pc_main',)
 
@@ -203,7 +203,7 @@ class Gui(ttk.Notebook):
 
 def pc_main(host=''):
     if host:
-        import vars
+        from . import vars
         vars.host = host
     
     root = Tk()

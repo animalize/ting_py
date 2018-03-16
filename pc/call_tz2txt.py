@@ -2,7 +2,7 @@ import os
 import re
 import tempfile
 
-from vars import tz2txt_path
+from .vars import tz2txt_path
 
 __all__ = ('getArticle')
 
