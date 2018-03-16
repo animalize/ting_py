@@ -11,16 +11,21 @@ try:
     import message
     from vars import cate_list
     from call_tz2txt import getArticle
+    from checkver import check_ver
 except:
     from . import  message
     from .vars import cate_list
     from .call_tz2txt import getArticle
+    from .checkver import check_ver
     
 # 分类约束
 assert len(cate_list) == 4, '分类总数（包括None）必须是4个。'
 assert cate_list[0] is not None, '第1个分类必须不是None。'
 
 __all__ = ('pc_main',)
+
+current_ver = 1
+from_full = False
 
 class Gui(ttk.Notebook):
     def __init__(self, root):
@@ -73,26 +78,27 @@ class Gui(ttk.Notebook):
                     command=self.paste_title,
                     fg='#990000')
         bt.grid(row=1, column=0)
-        # 清空标题
-        bt = Button(page1,
-                    text='清空标题',
-                    command=self.clear_title)
-        bt.grid(row=1, column=1)
+
         # 粘贴正文
         bt = Button(page1,
                     text='粘贴正文',
                     command=self.paste_text,
                     fg='#990000')
-        bt.grid(row=1, column=2)
+        bt.grid(row=1, column=1)
         # 清空正文
         bt = Button(page1,
                     text='清空正文',
                     command=self.clear_text)
-        bt.grid(row=1, column=3)
+        bt.grid(row=1, column=2)
         # tz2txt
         bt = Button(page1,
                     text='调用tz2txt',
                     command=self.tz2txt)
+        bt.grid(row=1, column=3)
+        # 检查更新
+        bt = Button(page1,
+                    text='检查更新',
+                    command=self.check_ver)
         bt.grid(row=1, column=4)
 
         # 标题
@@ -189,9 +195,6 @@ class Gui(ttk.Notebook):
 
         self.text.insert(END, t)
 
-    def clear_title(self):
-        self.title.set('')
-
     def clear_text(self):
         self.text.delete("1.0", END)
 
@@ -208,12 +211,17 @@ class Gui(ttk.Notebook):
         text = re.sub(r'[^\u0000-\uFFFF]', '', text)
         self.text.delete("1.0", END)
         self.text.insert(END, text)
+        
+    def check_ver(self):
+        s = check_ver(current_ver, from_full)
+        print(s)
 
-
-def pc_main(host=''):
+def pc_main(host='', current=1, full=False):
     if host:
         from . import vars
         vars.host = host
+    current_ver = current
+    from_full = full
     
     root = Tk()
     root.geometry("780x600")
