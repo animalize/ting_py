@@ -54,7 +54,7 @@ def getArticle(url):
             content = f.read()
     except:
         remove(fpath)
-        return 'tz2txt: 无法读取tz2txt的输出文件', ''
+        return 'tz2txt: 无法读取tz2txt的输出文件，可能是tz2txt不支持此网站或网站已改版', ''
 
     p = r'(?s)^标题：([^\n]*).*?\n起始网址：[^\n]*\n(.*)$'
     m = re.search(p, content)

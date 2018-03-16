@@ -63,9 +63,9 @@ class Gui(ttk.Notebook):
 
         # 提交
         bt = Button(page1,
-                    text='提交',
+                    text='提交到服务器',
                     command=self.submit)
-        bt.grid(row=0, column=3, columnspan=2)
+        bt.grid(row=0, column=4, columnspan=1)
 
         # 粘贴标题
         bt = Button(page1,
@@ -91,7 +91,7 @@ class Gui(ttk.Notebook):
         bt.grid(row=1, column=3)
         # tz2txt
         bt = Button(page1,
-                    text='tz2txt',
+                    text='调用tz2txt',
                     command=self.tz2txt)
         bt.grid(row=1, column=4)
 
