@@ -24,7 +24,7 @@ def main():
     py_path = os.path.join(py_path, 'py34', 'python.exe')
     
     pc_side.pc_main('http://127.0.0.1:' + str(PORT),
-                    py_path, FULL_VERSION, True)
+                    py_path, FULL_VERSION)
     
 if __name__ == '__main__':
     main()

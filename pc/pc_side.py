@@ -217,7 +217,7 @@ class Gui(ttk.Notebook):
         s = check_ver(current_ver, from_full)
         print(s)
 
-def pc_main(host='', py_cmd='', current=1, full=False):
+def pc_main(host='', py_cmd='', current=1):
     if host:
         from . import vars
         vars.host = host
@@ -225,7 +225,7 @@ def pc_main(host='', py_cmd='', current=1, full=False):
         global python_cmd, current_ver, from_full
         python_cmd = py_cmd
         current_ver = current
-        from_full = full
+        from_full = True
     
     root = Tk()
     root.geometry("780x600")
