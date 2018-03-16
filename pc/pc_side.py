@@ -7,9 +7,14 @@ from tkinter.scrolledtext import ScrolledText
 
 import pyperclip
 
-from . import  message
-from .cates import cate_list
-from .call_tz2txt import getArticle
+try:
+    import message
+    from cates import cate_list
+    from call_tz2txt import getArticle
+except:
+    from . import  message
+    from .cates import cate_list
+    from .call_tz2txt import getArticle
 
 __all__ = ('pc_main',)
 
