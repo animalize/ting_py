@@ -26,6 +26,7 @@ __all__ = ('pc_main',)
 
 current_ver = 1
 from_full = False
+python_cmd = 'python'
 
 class Gui(ttk.Notebook):
     def __init__(self, root):
@@ -200,7 +201,7 @@ class Gui(ttk.Notebook):
 
     def tz2txt(self):
         url = self.master.clipboard_get().strip()
-        title, text = getArticle(url)
+        title, text = getArticle(url, python_cmd)
 
         if title == text == '':
             return
@@ -216,14 +217,15 @@ class Gui(ttk.Notebook):
         s = check_ver(current_ver, from_full)
         print(s)
 
-def pc_main(host='', current=1, full=False):
+def pc_main(host='', py_cmd='', current=1, full=False):
     if host:
         from . import vars
         vars.host = host
         
-    global current_ver, from_full
-    current_ver = current
-    from_full = full
+        global python_cmd, current_ver, from_full
+        python_cmd = py_cmd
+        current_ver = current
+        from_full = full
     
     root = Tk()
     root.geometry("780x600")

@@ -31,7 +31,7 @@ def is_url(url):
         return False
 
 
-def getArticle(url):
+def getArticle(url, pycmd = 'python'):
     if not os.path.isfile(tz2txt_path):
         return 'tz2txt: 无法找到tz2txt.py，请确保vars.py里的路径配置正确。', ''
     
@@ -44,7 +44,7 @@ def getArticle(url):
         print('临时文件：', fpath)
 
     # tz2txt
-    cmd = 'python %s a -u %s -t %d -o %s -s none' % (
+    cmd = pycmd + ' %s a -u %s -t %d -o %s -s none' % (
         tz2txt_path, url, -1, fpath)
     os.system(cmd)
 
