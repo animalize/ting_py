@@ -92,7 +92,7 @@ class Gui(ttk.Notebook):
         entry.grid(row=2, column=0, columnspan=5, sticky=W + E)
 
         # 正文
-        self.text = ScrolledText(page1)
+        self.text = ScrolledText(page1, font = ('微软雅黑', 11))
         self.text.grid(row=3, column=0, columnspan=5, sticky=W + E + S + N)
 
         # second page
