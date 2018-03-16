@@ -9,12 +9,16 @@ import pyperclip
 
 try:
     import message
-    from cates import cate_list
+    from vars import cate_list
     from call_tz2txt import getArticle
 except:
     from . import  message
-    from .cates import cate_list
+    from .vars import cate_list
     from .call_tz2txt import getArticle
+    
+# 分类约束
+assert len(cate_list) == 4, '分类总数（包括None）必须是4个。'
+assert cate_list[0] is not None, '第1个分类必须不是None。'
 
 __all__ = ('pc_main',)
 
