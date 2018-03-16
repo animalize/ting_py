@@ -33,10 +33,10 @@ def is_url(url):
 
 def getArticle(url):
     if not os.path.isfile(tz2txt_path):
-        return '', ''
+        return 'tz2txt: 无法找到tz2txt.py，请确保vars.py里的路径配置正确。', ''
     
     if not is_url(url):
-        return '', ''
+        return 'tz2txt: 剪贴板内不是有效URL，无法调用tz2txt处理。', ''
     
     # 得到临时文件名
     with tempfile.NamedTemporaryFile('wb') as f:
@@ -54,7 +54,7 @@ def getArticle(url):
             content = f.read()
     except:
         remove(fpath)
-        return '', ''
+        return 'tz2txt: 无法读取tz2txt的输出文件', ''
 
     p = r'(?s)^标题：([^\n]*).*?\n起始网址：[^\n]*\n(.*)$'
     m = re.search(p, content)
