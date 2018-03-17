@@ -24,7 +24,7 @@ assert cate_list[0] is not None, '第1个分类必须不是None。'
 
 __all__ = ('pc_main',)
 
-current_ver = 2
+current_ver = 3
 from_full = False
 python_cmd = 'python'
 

@@ -8,11 +8,11 @@ from pc import pc_side
 PORT = 17828
 
 # 集成包版本
-FULL_VERSION = 2
+FULL_VERSION = 3
 
 # ting_py版本
 # 改变这里后，也要改变pc_side.py里的current_ver
-TING_VERSION = 2
+TING_VERSION = 3
 
 def main():
     p = Process(target = web_server.server_main, 
