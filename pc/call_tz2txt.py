@@ -48,7 +48,7 @@ def getArticle(url, pycmd = 'python'):
         tz2txt_path, url, -1, fpath)
     cmd = cmd.replace('&', '^&')
     
-    print('执行:', cmd)
+    #print('执行:', cmd)
     os.system(cmd)
 
     # 提取
