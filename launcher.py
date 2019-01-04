@@ -8,7 +8,7 @@ from pc import pc_side
 PORT = 17828
 
 # 集成包版本
-FULL_VERSION = 3
+FULL_VERSION = 4
 
 # ting_py版本
 # 改变这里后，也要改变pc_side.py里的current_ver
