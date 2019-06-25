@@ -1,7 +1,13 @@
 import json
 
-import tornado.ioloop
-from tornado.web import RequestHandler
+try:
+    import tornado.ioloop
+    from tornado.web import RequestHandler
+except:
+    print('需要安装第三方模块: tornado')
+    import os
+    if os.name == 'nt':
+        os.system('pause')
 
 try:
     import data

@@ -1,6 +1,12 @@
 import json
 
-import requests
+try:
+    import requests
+except:
+    print('需要安装第三方模块: requests')
+    import os
+    if os.name == 'nt':
+        os.system('pause')
 
 try:
     import vars

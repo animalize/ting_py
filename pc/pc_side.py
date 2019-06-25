@@ -5,7 +5,13 @@ from tkinter import *
 from tkinter import ttk
 from tkinter.scrolledtext import ScrolledText
 
-import pyperclip
+try:
+    import pyperclip
+except:
+    print('需要安装第三方模块: pyperclip')
+    import os
+    if os.name == 'nt':
+        os.system('pause')
 
 try:
     import message
