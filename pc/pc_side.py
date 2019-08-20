@@ -18,11 +18,13 @@ try:
     from vars import cate_list
     from call_tz2txt import getArticle
     from checkver import check_ver
+    from process_text import process_text
 except:
     from . import  message
     from .vars import cate_list
     from .call_tz2txt import getArticle
     from .checkver import check_ver
+    from .process_text import process_text
     
 # 分类约束
 assert len(cate_list) == 4, '分类总数（包括None）必须是4个。'
@@ -198,8 +200,7 @@ class Gui(ttk.Notebook):
             print(e)
             return
 
-        t = re.sub(r'[^\u0000-\uFFFF]', '', t)
-
+        t = process_text(t)
         self.text.insert(END, t)
 
     def clear_text(self):
