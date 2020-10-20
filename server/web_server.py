@@ -1,4 +1,13 @@
 import json
+import os
+
+# tornado不支持Windows上的ProactorEventLoop
+# Python 3.8在Windows上默认使用ProactorEventLoop
+# 手动使用SelectorEventLoop
+if os.name == 'nt':
+    import asyncio
+    asyncio.DefaultEventLoopPolicy = \
+        asyncio.WindowsSelectorEventLoopPolicy
 
 try:
     import tornado.ioloop
